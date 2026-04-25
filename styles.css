@@ -784,7 +784,7 @@ section { padding: 140px 0; position: relative; }
 .footer > :nth-child(1) { justify-self: start; padding-left: 40px; }
 .footer > :nth-child(2) { justify-self: center; text-align: center; }
 .footer > :nth-child(3) { justify-self: end; }
-.footer__logo { height: 32px; opacity: 0.7; }
+.footer__logo { height: 32px; width: auto; opacity: 0.7; }
 @media (max-width: 760px) {
   .contact__grid { padding-left: 0; grid-template-columns: 1fr; gap: 36px; }
   .footer { grid-template-columns: 1fr; gap: 20px; text-align: center; }
