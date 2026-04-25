@@ -1,0 +1,24 @@
+# robots.txt — Elite Arts & Crafts
+# https://eliteartsandcrafts.com/
+
+User-agent: *
+Allow: /
+Disallow: /uploads/
+Disallow: /assets/*.docx$
+Disallow: /*?*
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemap
+Sitemap: https://eliteartsandcrafts.com/sitemap.xml

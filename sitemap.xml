@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://eliteartsandcrafts.com/</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://eliteartsandcrafts.com/assets/lobby.jpeg</image:loc>
+      <image:title>Elite Arts &amp; Crafts — Unit II entrance, Jodhpur</image:title>
+      <image:caption>Marble, walnut and natural light at the Unit II entrance.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://eliteartsandcrafts.com/assets/entrance-team.jpeg</image:loc>
+      <image:title>The Elite Arts &amp; Crafts team</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eliteartsandcrafts.com/assets/woodworking-hall.jpeg</image:loc>
+      <image:title>Advanced woodworking hall</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eliteartsandcrafts.com/assets/factory-interior-wide.jpeg</image:loc>
+      <image:title>Production floor — wide view</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eliteartsandcrafts.com/assets/sanding.jpeg</image:loc>
+      <image:title>Sanding stations and metal finishing</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eliteartsandcrafts.com/assets/timber-yard.jpeg</image:loc>
+      <image:title>Timber yard — in-house seasoning</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eliteartsandcrafts.com/assets/corridor.jpeg</image:loc>
+      <image:title>Headquarters corridor</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eliteartsandcrafts.com/assets/mat-image1.png</image:loc>
+      <image:title>Concrete composite sideboard</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eliteartsandcrafts.com/assets/mat-image2.png</image:loc>
+      <image:title>Bone inlay and reclaimed wood</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eliteartsandcrafts.com/assets/mat-image4.png</image:loc>
+      <image:title>Acacia live-edge sideboard</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://eliteartsandcrafts.com/assets/mat-image5.png</image:loc>
+      <image:title>Travertine marble + mango wood shelf</image:title>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/9-OTYmUJe8U/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Elite Arts &amp; Crafts — The Workshop</video:title>
+      <video:description>A film of the Elite Arts &amp; Crafts workshop in Jodhpur — from timber to crate.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=9-OTYmUJe8U</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/9-OTYmUJe8U</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:requires_subscription>no</video:requires_subscription>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+</urlset>
