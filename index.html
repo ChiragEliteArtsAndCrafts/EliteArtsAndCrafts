@@ -235,7 +235,7 @@
       <span>Jodhpur · Since 2016</span>
     </span>
   </a>
-  <nav class="nav__links">
+  <nav class="nav__links" id="navLinks">
     <a href="#about">About</a>
     <a href="#capability">Capability</a>
     <a href="#products">Archive</a>
@@ -243,8 +243,12 @@
     <a href="#film">Film</a>
     <a href="#why">Why us</a>
     <a href="#global">Global</a>
+    <a href="#contact" class="nav__links-cta" data-open-contact>Get in touch</a>
   </nav>
-  <a href="#contact" class="nav__cta">Get in touch</a>
+  <a href="#contact" class="nav__cta" data-open-contact>Get in touch</a>
+  <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
 <!-- HERO -->
@@ -473,7 +477,7 @@
         <p class="products__cta-head">Write to us for the <em style="color:var(--gold);font-style:italic;">current trends</em> &amp; our complete catalogue.</p>
         <p class="products__cta-sub">Active collections. Trend reports. Custom briefs welcome.</p>
       </div>
-      <a href="#contact" class="products__cta-link">Request catalogue <span aria-hidden="true">→</span></a>
+      <a href="#contact" class="products__cta-link" data-open-contact>Request catalogue <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -791,11 +795,121 @@
   </div>
 </section>
 
+<!-- CONTACT MODAL -->
+<div class="cmodal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="cmodalTitle" hidden>
+  <div class="cmodal__backdrop" data-close-contact></div>
+  <div class="cmodal__panel" role="document">
+    <button class="cmodal__close" type="button" aria-label="Close" data-close-contact>&times;</button>
+    <div class="cmodal__head">
+      <span class="cmodal__eyebrow">Get in touch</span>
+      <h3 class="cmodal__title" id="cmodalTitle">Tell us about your project</h3>
+      <p class="cmodal__sub">We respond within one business day.</p>
+    </div>
+    <form class="cform" id="contactForm" novalidate>
+      <input type="hidden" name="_subject" value="New enquiry from website">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+
+      <label class="cform__row">
+        <span class="cform__label">Name</span>
+        <input type="text" name="name" required autocomplete="name" />
+      </label>
+      <label class="cform__row">
+        <span class="cform__label">Organization</span>
+        <input type="text" name="organization" autocomplete="organization" />
+      </label>
+      <label class="cform__row">
+        <span class="cform__label">Email</span>
+        <input type="email" name="email" required autocomplete="email" />
+      </label>
+
+      <button class="cform__submit" type="submit">
+        <span class="cform__submit-label">Send enquiry</span>
+      </button>
+      <p class="cform__status" id="cformStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
 <script>
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  const burger = document.getElementById('navBurger');
+  const navLinks = document.getElementById('navLinks');
+  const closeMenu = () => {
+    burger.classList.remove('is-open');
+    navLinks.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-open');
+  };
+  burger.addEventListener('click', () => {
+    const open = !navLinks.classList.contains('is-open');
+    burger.classList.toggle('is-open', open);
+    navLinks.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('nav-open', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  // Contact modal
+  const cmodal = document.getElementById('contactModal');
+  const cform = document.getElementById('contactForm');
+  const cstatus = document.getElementById('cformStatus');
+  const openContact = (e) => {
+    if (e) e.preventDefault();
+    closeMenu();
+    cmodal.hidden = false;
+    requestAnimationFrame(() => cmodal.classList.add('is-open'));
+    document.body.classList.add('nav-open');
+    setTimeout(() => cform.querySelector('input[name="name"]').focus(), 240);
+  };
+  const closeContact = () => {
+    cmodal.classList.remove('is-open');
+    document.body.classList.remove('nav-open');
+    setTimeout(() => { cmodal.hidden = true; }, 280);
+  };
+  document.querySelectorAll('[data-open-contact]').forEach(el => el.addEventListener('click', openContact));
+  document.querySelectorAll('[data-close-contact]').forEach(el => el.addEventListener('click', closeContact));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !cmodal.hidden) closeContact(); });
+
+  cform.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!cform.reportValidity()) return;
+    const btn = cform.querySelector('.cform__submit');
+    const label = btn.querySelector('.cform__submit-label');
+    btn.disabled = true;
+    label.textContent = 'Sending…';
+    cstatus.textContent = '';
+    cstatus.className = 'cform__status';
+    try {
+      const data = new FormData(cform);
+      const res = await fetch('https://formsubmit.co/ajax/Info@eliteartsandcrafts.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      });
+      const json = await res.json();
+      if (res.ok && (json.success === 'true' || json.success === true)) {
+        cform.reset();
+        cstatus.textContent = 'Thank you. We will be in touch shortly.';
+        cstatus.classList.add('is-ok');
+        label.textContent = 'Sent';
+      } else {
+        throw new Error(json.message || 'Submission failed');
+      }
+    } catch (err) {
+      cstatus.textContent = 'Could not send. Email Info@eliteartsandcrafts.com directly.';
+      cstatus.classList.add('is-err');
+      label.textContent = 'Send enquiry';
+    } finally {
+      btn.disabled = false;
+    }
+  });
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
